@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哦哈哟</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* 遮罩层：弹窗后面的半透明背景 */
+    .modal-overlay {
+      display: none;              /* 默认隐藏 */
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* 显示弹窗 */
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    /* 弹窗内容框 */
+    .modal-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-box img {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: 8px;
+    }
+
+    .modal-box p {
+      margin: 16px 0;
+      color: #333;
+    }
+
+    .modal-box button {
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>你好</h1>
+  <button id="btn">点我</button>
+
+  <!-- 自定义弹窗 -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-box">
+      <img src="854b1e5a-22aa-4a77-88bf-b31d77d4c7b3.jpg" alt="弹窗图片">
+      <p>你爹出现噜</p>
+      <button id="closeBtn">关闭</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const btn = document.getElementById('btn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // 点击按钮 → 显示弹窗
+    btn.addEventListener('click', () => {
+      modal.classList.add('show');
+    });
+
+    // 点击关闭按钮 → 隐藏弹窗
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    // 点击遮罩层（弹窗外的灰色区域）→ 也关闭
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
